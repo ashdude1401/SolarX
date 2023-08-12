@@ -18,6 +18,7 @@ mongoose
   });
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
+app.use("/home",(req,res)=>{res.send("This is home page")})
 app.use("/user", userRouter);
 app.use("/seller", sellerRouter);
 app.use("*", (req, res) => {
