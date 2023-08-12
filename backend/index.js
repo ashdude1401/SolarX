@@ -6,6 +6,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const cors = require("cors");
+const Review = require("./models/review");
+const Bill = require("./models/bill");
 const userRouter = require("./routes/user");
 const sellerRouter = require("./routes/seller");
 mongoose
@@ -17,8 +19,11 @@ mongoose
     console.log(err);
   });
 app.use(cors());
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/home",(req,res)=>{res.send("This is home page")})
+app.use("/home", (req, res) => {
+  res.send("This is home page");
+});
 app.use("/user", userRouter);
 app.use("/seller", sellerRouter);
 app.use("*", (req, res) => {

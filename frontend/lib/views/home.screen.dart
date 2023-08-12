@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'calculator.dart';
 
+final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -16,6 +18,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
           'Get Set Solar !',
@@ -32,7 +35,9 @@ class _HomeState extends State<Home> {
             "assets/images/menu_fries.png",
             height: 25,
           ),
-          onPressed: () {},
+          onPressed: () {
+            _scaffoldKey.currentState?.openDrawer();
+          },
         ),
         actions: <Widget>[
           IconButton(
@@ -40,7 +45,49 @@ class _HomeState extends State<Home> {
               "assets/images/Notification.png",
               height: 25,
             ),
-            onPressed: () {},
+            onPressed: () {
+              // bottom sheet notification
+              showModalBottomSheet(
+                context: context,
+                builder: (BuildContext context) {
+                  return Container(
+                    height: MediaQuery.of(context).size.height * 0.6,
+                    width: double.infinity,
+                    color: Colors.transparent,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(25),
+                          topRight: Radius.circular(25),
+                        ),
+                      ),
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Text(
+                            "No new notifications",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Image.asset(
+                            "assets/images/notify.png",
+                            height: MediaQuery.of(context).size.height * 0.3,
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
           ),
         ],
       ),
@@ -60,7 +107,8 @@ class _HomeState extends State<Home> {
                   headingImg: "assets/images/shopping.png",
                   content:
                       "Get the best deals on Solar Panels, Inverters, Batteries, etc. from our trusted partners",
-                  color: const Color(0xFF359608).withOpacity(0.9),
+                  color:
+                      const Color.fromARGB(255, 23, 157, 79).withOpacity(0.9),
                 ),
               ),
               const SizedBox(
@@ -70,15 +118,17 @@ class _HomeState extends State<Home> {
               //Connect to Experts
               GestureDetector(
                 onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ConnectWithExpert())),
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ConnectWithExpert(),
+                  ),
+                ),
                 child: FeatureCard(
                   heading: "Connect to Experts ",
                   headingImg: "assets/images/connect.png",
                   content:
                       "Get over a 1-1 call with our experts, get complete info. on the domain before going ahead",
-                  color: const Color(0xFF6FE14D).withOpacity(0.9),
+                  color: const Color.fromARGB(255, 0, 97, 70).withOpacity(0.9),
                 ),
               ),
 
@@ -90,13 +140,12 @@ class _HomeState extends State<Home> {
               GestureDetector(
                 onTap: () => Navigator.pushNamed(context, Calculator.routeName),
                 child: FeatureCard(
-                  content:
-                      "Let’s calculate conventional vs Solar Panel cost as per your consumption",
-                  heading: 'Calculator',
-                  headingImg: "assets/images/connect.png",
-                  showChip: true,
-                  color: const Color(0xFF123507),
-                ),
+                    content:
+                        "Let’s calculate conventional vs Solar Panel cost as per your consumption",
+                    heading: 'Calculator',
+                    headingImg: "assets/images/percent-square.png",
+                    showChip: true,
+                    color: const Color(0xFF123507)),
               ),
               const SizedBox(
                 height: 20,
@@ -127,108 +176,109 @@ class FeatureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32),
-        decoration: BoxDecoration(
-            color: color,
-            borderRadius: const BorderRadius.all(Radius.circular(40))),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.6,
-                  child: Text(
-                    heading,
-                    softWrap: true,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                    ),
+      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32),
+      decoration: BoxDecoration(
+          color: color,
+          borderRadius: const BorderRadius.all(Radius.circular(40))),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.6,
+                child: Text(
+                  heading,
+                  softWrap: true,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Spacer(),
-                Image.asset(
-                  headingImg,
-                  height: 25,
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            showChip
-                ? Row(
-                    children: [
-                      OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 4.0, horizontal: 8.0),
-                        ),
-                        onPressed: () {},
-                        child: Text(
-                          "Day",
-                          style: GoogleFonts.quicksand(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 4.0, horizontal: 8.0),
-                        ),
-                        onPressed: () {},
-                        child: Text(
-                          "Month",
-                          style: GoogleFonts.quicksand(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 0, horizontal: 8.0),
-                        ),
-                        onPressed: () {},
-                        child: Text(
-                          "year",
-                          style: GoogleFonts.quicksand(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                : const SizedBox(),
-            const SizedBox(
-              height: 30,
-            ),
-            Text(
-              content,
-              style: GoogleFonts.quicksand(
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
               ),
+              const Spacer(),
+              Image.asset(
+                headingImg,
+                height: 25,
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          showChip
+              ? Row(
+                  children: [
+                    OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 4.0, horizontal: 8.0),
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        "Day",
+                        style: GoogleFonts.quicksand(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 4.0, horizontal: 8.0),
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        "Month",
+                        style: GoogleFonts.quicksand(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 0, horizontal: 8.0),
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        "year",
+                        style: GoogleFonts.quicksand(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              : const SizedBox(),
+          const SizedBox(
+            height: 30,
+          ),
+          Text(
+            content,
+            style: GoogleFonts.quicksand(
+              color: Colors.white,
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
             ),
-            const SizedBox(
-              height: 20,
-            ),
-          ],
-        ));
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+        ],
+      ),
+    );
   }
 }
