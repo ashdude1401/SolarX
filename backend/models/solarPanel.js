@@ -2,10 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const solarPanelSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-  },
   description: {
     type: String,
   },
@@ -13,19 +9,22 @@ const solarPanelSchema = new Schema({
     type: String,
   },
   model: {
-    unique: true,
     type: String,
   },
   wattage: {
     type: Number,
   },
+  weight: {
+    type: Number,
+  },
   price: {
     type: Number,
   },
-  warranty: {
-    type: Number,
+  dimensions: {
+    type: String,
   },
-  status: {
+  image: [{ type: String }],
+  availability: {
     type: String,
     enum: ["available", "sold"],
     default: "available",

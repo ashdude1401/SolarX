@@ -23,6 +23,8 @@ router.post("/signup", async (req, res) => {
     city,
     zipCode,
     country,
+    countryCode,
+    number,
     phoneNumber,
     location,
   } = req.body;
@@ -41,7 +43,7 @@ router.post("/signup", async (req, res) => {
     city,
     zipCode,
     country,
-    phoneNumber,
+    phoneNumber: { countryCode, number },
     location,
   });
   await newUser

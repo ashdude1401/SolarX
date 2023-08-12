@@ -38,18 +38,22 @@ router.get("/:id", isLoggedIn, async (req, res) => {
 });
 
 router.post("/signup", isLoggedIn, async (req, res) => {
+  console.log(req.body);
   const {
     userId,
     email,
     firstName,
     lastName,
     username,
+    companyName,
+    companyImage,
     image,
     address,
     city,
     zipCode,
     country,
-    phoneNumber,
+    countryCode,
+    number,
     location,
   } = req.body;
   const seller = await Seller.findOne({ userId });
@@ -62,12 +66,14 @@ router.post("/signup", isLoggedIn, async (req, res) => {
     firstName,
     lastName,
     username,
+    companyName,
+    companyImage,
     image,
     address,
     city,
     zipCode,
     country,
-    phoneNumber,
+    phoneNumber: { countryCode, number },
     location,
   });
   await newSeller
@@ -81,22 +87,32 @@ router.post("/signup", isLoggedIn, async (req, res) => {
 });
 
 router.post("/:id/solarPanel", isLoggedIn, async (req, res) => {
-  const { name, description, brand, model, wattage, price, warranty, status } =
-    req.body;
-  const userId = req.params.id;
-  const seller = await Seller.findOne({ userId });
-  const solarPanel = await SolarPanel.findOne({ seller: seller._id });
-  if (solarPanel) {
-    return res.status(400).send("Solar Panel already exists");
-  }
-  const newSolarPanel = new SolarPanel({
-    name,
+  const {
     description,
+    dimensions,
+    weight,
     brand,
     model,
     wattage,
     price,
-    warranty,
+    image,
+    status,
+  } = req.body;
+  const userId = req.params.id;
+  const seller = await Seller.findOne({ userId });
+  const solarPanel = await SolarPanel.findOne({ seller: seller._id });
+  if (solarPanel && solarPanel.brand === brand && solarPanel.model === model) {
+    return res.status(400).send("Solar Panel already exists");
+  }
+  const newSolarPanel = new SolarPanel({
+    description,
+    dimensions,
+    weight,
+    brand,
+    model,
+    wattage,
+    price,
+    image,
     status,
   });
   newSolarPanel.seller = seller._id;

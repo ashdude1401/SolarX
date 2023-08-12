@@ -18,6 +18,9 @@ const sellerSchema = new Schema({
   companyName: {
     type: String,
   },
+  companyImage: {
+    type: String,
+  },
   firstName: {
     type: String,
     required: true,
