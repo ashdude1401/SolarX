@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'calculator.dart';
 
+final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -16,6 +18,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
           'Get Set Solar !',
@@ -32,7 +35,9 @@ class _HomeState extends State<Home> {
             "assets/images/menu_fries.png",
             height: 25,
           ),
-          onPressed: () {},
+          onPressed: () {
+            _scaffoldKey.currentState?.openDrawer();
+          },
         ),
         actions: <Widget>[
           IconButton(
