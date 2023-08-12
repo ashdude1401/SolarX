@@ -40,7 +40,49 @@ class _HomeState extends State<Home> {
               "assets/images/Notification.png",
               height: 25,
             ),
-            onPressed: () {},
+            onPressed: () {
+              // bottom sheet notification
+              showModalBottomSheet(
+                context: context,
+                builder: (BuildContext context) {
+                  return Container(
+                    height: MediaQuery.of(context).size.height * 0.6,
+                    width: double.infinity,
+                    color: Colors.transparent,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(25),
+                          topRight: Radius.circular(25),
+                        ),
+                      ),
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Text(
+                            "No new notifications",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Image.asset(
+                            "assets/images/notify.png",
+                            height: MediaQuery.of(context).size.height * 0.3,
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
           ),
         ],
       ),
