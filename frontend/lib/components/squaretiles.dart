@@ -15,10 +15,12 @@ class SquareTile extends StatelessWidget {
         color: Colors.grey[200],
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
             imagePath,
-            height: 40,
+            height: MediaQuery.of(context).size.height * 0.03,
           ),
           const SizedBox(width: 20),
           Text(title,
