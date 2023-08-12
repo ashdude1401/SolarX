@@ -13,7 +13,7 @@ class RoutePath {
 
   static final routes = {
     home: (BuildContext context) => const Home(),
-    markertplace: (BuildContext context) => const MarketPlace(),
+    markertplace: (BuildContext context) => MarketPlace(),
     calculator: (BuildContext context) => const Calculator(),
     connectWithUser: (BuildContext context) => const ConnectWithExpert()
   };

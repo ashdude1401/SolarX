@@ -3,6 +3,26 @@ const Seller = require("../models/seller");
 const SolarPanel = require("../models/solarPanel");
 const { isLoggedIn } = require("../middlewares");
 const router = express.Router();
+const upload = require('../middleware/multer');
+const sharp = require('sharp');
+const AWS=require('aws-sdk');
+const {v4 : uuidv4} = require('uuid')
+
+
+BUCKET_NAME=process.env.BUCKET_NAME;
+BUCKET_REGION=process.env.BUCKET_REGION;    
+ACCESS_KEY=process.env.ACCESS_KEY;
+SECRET_ACCESS_KEY=process.env.SECRET_ACCESS_KEY;
+
+const s3=new AWS.S3({
+    credentials:{
+        accessKeyId: ACCESS_KEY,
+        secretAccessKey: SECRET_ACCESS_KEY,
+    },
+    region:BUCKET_REGION
+})
+
+
 
 router.get("/", async (req, res) => {
   const sellers = await Seller.find({});
@@ -102,4 +122,48 @@ router.post("/:id/solarPanel", isLoggedIn, async (req, res) => {
     res.send("Solar Panel added successfully");
   });
 });
+
+
+
+router.post("/uploadImage",upload.single("image"),async (req,res)=>{
+
+  try {
+    
+    const newId = uuidv4();
+    console.log(req.file.buffer)
+    const buffer= await sharp(req.file.buffer).resize({height:1920,width:1080,fit:"contain"}).toBuffer();
+    const params={
+        Bucket:BUCKET_NAME+`/main/user/solar`,
+        Key: newId,
+        Body: buffer,
+        ContentType: req.file.mimetype,
+        ACL:'public-read'
+    }
+    await s3.putObject(params).promise();
+    imageUrl=`https://${BUCKET_NAME}.s3.amazonaws.com/main/user/solar/${newId}`;
+    
+    res.send(imageUrl);
+} catch (err) {
+    res.send({
+        success: false,
+        msg: err.message || "Error Occurred while uploading image",
+    });
+}
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = router;
