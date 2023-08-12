@@ -26,14 +26,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'SolarX',
-        theme: CustomTheme.lightTheme(),
-        darkTheme: CustomTheme.darkTheme(),
-        themeMode: ThemeMode.light,
-        routes: RoutePath.routes,
-        onGenerateRoute: RoutePath.generateRoute,
-        debugShowCheckedModeBanner: false,
-        // home: const OnBoarding(),
-        home: const Home());
+      title: 'SolarX',
+      theme: CustomTheme.lightTheme(),
+      darkTheme: CustomTheme.darkTheme(),
+      themeMode: ThemeMode.light,
+      routes: RoutePath.routes,
+      onGenerateRoute: RoutePath.generateRoute,
+      debugShowCheckedModeBanner: false,
+      home: const OnBoarding(),
+      // home: const Home(),
+    );
   }
 }
