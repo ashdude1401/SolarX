@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:frontend/views/home.screen.dart';
+import 'package:frontend/views/onboarding.screen.dart';
 
 import 'constants/routes.dart';
 import 'constants/themedata.dart';
-import 'views/onboarding.screen.dart';
+// import 'views/onboarding.screen.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,8 +34,10 @@ class MyApp extends StatelessWidget {
       routes: RoutePath.routes,
       onGenerateRoute: RoutePath.generateRoute,
       debugShowCheckedModeBanner: false,
-      home: const OnBoarding(),
-      // home: const Home(),
+
+      // home: const OnBoarding(),
+
+      home: const Home(),
     );
   }
 }

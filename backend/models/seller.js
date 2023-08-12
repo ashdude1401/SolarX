@@ -44,6 +44,7 @@ const sellerSchema = new Schema({
     {
       countryCode: {
         type: Number,
+        default: 91,
       },
       number: {
         type: Number,

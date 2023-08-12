@@ -14,7 +14,6 @@ router.get("/:id", isLoggedIn, async (req, res) => {
   const seller = await Seller.findOne({ userId })
     .populate("solarPanels")
     .populate("reviews")
-    .populate("orders");
   res.send(seller);
 });
 
