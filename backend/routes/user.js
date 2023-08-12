@@ -6,6 +6,7 @@ const router = express.Router();
 router.get("/:id", async (req, res) => {
   const userId = req.params.id;
   const user = await User.findOne({ userId });
+  console.log(user);
   res.send(user);
 });
 
@@ -25,7 +26,7 @@ router.post("/signup", async (req, res) => {
     location,
   } = req.body;
   const user = await User.findOne({ userId });
-  if (user.length > 0) {
+  if (user) {
     return res.status(400).send("User already exists");
   }
   const newUser = new User({
