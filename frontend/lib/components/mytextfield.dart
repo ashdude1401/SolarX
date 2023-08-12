@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 class MyTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
+  final String validateText;
   final bool obscureText;
   const MyTextField({
     super.key,
     required this.controller,
     required this.hintText,
+    required this.validateText,
     required this.obscureText,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: (val) => val!.isEmpty ? 'Veuillez remplir ce champ svp' : null,
+      validator: (val) => val!.isEmpty ? validateText : null,
       controller: controller,
       obscureText: obscureText,
       decoration: InputDecoration(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../views/auth.screen.dart';
 import '../views/home.screen.dart';
 
 class RoutePath {
@@ -7,7 +6,6 @@ class RoutePath {
   static const String auth = '/auth';
 
   static final routes = {
-    auth: (BuildContext context) => const AuthScreen(),
     home: (BuildContext context) => const Home()
     // singlePost: (BuildContext context) => const SinglePost(),
   };
@@ -16,8 +14,6 @@ class RoutePath {
     switch (settings.name) {
       case RoutePath.home:
         return MaterialPageRoute(builder: (_) => const Home());
-      case RoutePath.auth:
-        return MaterialPageRoute(builder: (_) => const AuthScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
