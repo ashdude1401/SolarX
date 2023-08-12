@@ -49,9 +49,9 @@ android {
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
 
-        //Add Auth0 credentials
-        // manifestPlaceholders += [auth0Domain: "<YOUR_AUTH0_DOMAIN>", auth0Scheme: "flutterdemo"] 
-        minSdkVersion flutter.minSdkVersion
+        // Add Auth0 credentials
+        manifestPlaceholders += [auth0Domain: "dev-uqntq2kucp3u7itx.us.auth0.com", auth0Scheme: "https"] 
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
