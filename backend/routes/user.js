@@ -60,4 +60,20 @@ router.post("/calc", async (req, res) => {
   res.send({ energy });
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = router;

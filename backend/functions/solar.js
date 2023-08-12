@@ -83,6 +83,7 @@ function solarEnergy(area, state_no, Perfomance_ratio = 70, efficiency = 17) {
     (data_irradiation[state_no] / 1000) *
     Perfomance_ratio *
     365;
+    
   return energy;
 }
 module.exports = solarEnergy;
