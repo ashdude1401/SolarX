@@ -16,11 +16,14 @@ class MyButton extends StatelessWidget {
           color: const Color.fromARGB(255, 71, 233, 133),
           borderRadius: BorderRadius.circular(8),
         ),
-        child: const Center(
+        child: Center(
           child: Text(
-            "Continue",
+            "Login",
             style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: MediaQuery.of(context).size.width * 0.04,
+            ),
           ),
         ),
       ),

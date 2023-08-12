@@ -34,8 +34,8 @@ class WelcomePage extends StatelessWidget {
           child: Stack(
             alignment: Alignment.center,
             children: [
-              Image.network(
-                'https://images.unsplash.com/photo-1691156564254-e503d146ac97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
+              Image.asset(
+                'assets/images/page1.jpg',
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 fit: BoxFit.cover,
@@ -82,8 +82,16 @@ class WelcomePage extends StatelessWidget {
                                   controller: usernameController,
                                   hintText: 'Email',
                                   obscureText: false,
+                                  validateText: "Please enter your email",
                                 ),
 
+                                const SizedBox(height: 10),
+                                MyTextField(
+                                  controller: usernameController,
+                                  hintText: 'Password',
+                                  obscureText: false,
+                                  validateText: "Please enter your password",
+                                ),
                                 const SizedBox(height: 10),
 
                                 // sign in button
@@ -140,12 +148,12 @@ class WelcomePage extends StatelessWidget {
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: const [
-                                      // facebook button
-                                      SquareTile(
-                                          imagePath:
-                                              'assets/images/facebook.png',
-                                          title: "Continue with Facebook"),
-                                      SizedBox(height: 10),
+                                      // // facebook button
+                                      // SquareTile(
+                                      //     imagePath:
+                                      //         'assets/images/facebook.png',
+                                      //     title: "Continue with Facebook"),
+                                      // SizedBox(height: 10),
 
                                       // google button
                                       SquareTile(
@@ -156,9 +164,9 @@ class WelcomePage extends StatelessWidget {
                                       SizedBox(height: 10),
 
                                       // apple button
-                                      SquareTile(
-                                          imagePath: 'assets/images/apple.png',
-                                          title: "Continue with Apple"),
+                                      // SquareTile(
+                                      //     imagePath: 'assets/images/apple.png',
+                                      //     title: "Continue with Apple"),
                                     ],
                                   ),
                                 ),
@@ -182,8 +190,12 @@ class WelcomePage extends StatelessWidget {
                                           Text(
                                             'Don\'t have an account?',
                                             style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20),
+                                              color: Colors.white,
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.04,
+                                            ),
                                             textAlign: TextAlign.start,
                                           ),
                                           const SizedBox(width: 4),
@@ -197,13 +209,17 @@ class WelcomePage extends StatelessWidget {
                                                 ),
                                               );
                                             },
-                                            child: const Text(
+                                            child: Text(
                                               'Sign Up',
                                               style: TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 71, 233, 133),
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 20),
+                                                color: Color.fromARGB(
+                                                    255, 71, 233, 133),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.04,
+                                              ),
                                             ),
                                           ),
                                         ],
@@ -213,12 +229,16 @@ class WelcomePage extends StatelessWidget {
                                                   .size
                                                   .height *
                                               0.01),
-                                      const Text('Forgot Password?',
+                                      Text('Forgot Password?',
                                           style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 71, 233, 133),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20),
+                                            color: Color.fromARGB(
+                                                255, 71, 233, 133),
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.04,
+                                          ),
                                           textAlign: TextAlign.start),
                                     ],
                                   ),

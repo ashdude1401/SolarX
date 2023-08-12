@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../components/mybutton.dart';
 import '../components/mytextfield.dart';
-import 'login.screen.dart';
 
 class Signup extends StatelessWidget {
   Signup({super.key});
@@ -36,8 +35,8 @@ class Signup extends StatelessWidget {
           child: Stack(
             alignment: Alignment.center,
             children: [
-              Image.network(
-                'https://images.unsplash.com/photo-1691156564254-e503d146ac97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
+              Image.asset(
+                'assets/images/page2.jpg',
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 fit: BoxFit.cover,
@@ -85,6 +84,7 @@ class Signup extends StatelessWidget {
                                   controller: usernameController,
                                   hintText: 'Email',
                                   obscureText: false,
+                                  validateText: 'Enter your email',
                                 ),
                                 const SizedBox(height: 10),
                                 MyPasswordTextField(
@@ -133,13 +133,7 @@ class Signup extends StatelessWidget {
                                     const SizedBox(height: 10),
                                     MyButtonAgree(
                                       text: "Agree and Continue",
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => LoginPage(),
-                                            ));
-                                      },
+                                      onTap: () {},
                                     ),
                                   ],
                                 ),
