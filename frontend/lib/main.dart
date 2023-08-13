@@ -4,6 +4,7 @@ import 'package:frontend/views/home.screen.dart';
 
 import 'constants/routes.dart';
 import 'constants/themedata.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'views/onboarding.screen.dart';
 
 Future main() async {
@@ -18,7 +19,7 @@ Future main() async {
       systemNavigationBarIconBrightness: Brightness.light,
     ),
   );
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

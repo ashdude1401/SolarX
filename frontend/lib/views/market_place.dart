@@ -19,10 +19,11 @@ class MarketPlace extends StatelessWidget {
         content:
             "Get Best Deals on Solar Panels that are available in the market",
         color: Color.fromARGB(255, 23, 139, 43),
+  
       ),
     ),
-    Padding(
-      padding: const EdgeInsets.all(8.0),
+    const Padding(
+      padding: EdgeInsets.all(8.0),
       child: FeatureCard(
           heading: "Best Vendors",
           headingImg: "assets/images/Box.png",
@@ -38,6 +39,7 @@ class MarketPlace extends StatelessWidget {
         content: "Sort the Solar Panels as per your needs",
         color: Color.fromARGB(255, 13, 107, 73),
       ),
+         
     ),
   ];
   @override

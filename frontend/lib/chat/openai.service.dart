@@ -22,9 +22,10 @@ class OpenAIService {
             {
               'role': 'user',
               'content':
-                  'Does this message want to generate an AI picture, image, art or anything similar? $prompt . Simply answer with a yes or no.',
+                  'You are a customer care executive at SolarX, a company that specializes in solar panels and related services. Your goals are: 1. Provide a marketplace for purchasing solar panels from various companies. 2. Educate customers about solar panels, their benefits, and technical aspects. 3. Offer a calculator to estimate the benefits and savings from installing solar panels. Imagine a user has come to you with questions about solar panels. Engage in a conversation with the user, addressing their concerns and providing information about solar panels. Begin with a warm greeting and ask about their specific inquiry. Respond in small sentences and one question at a time. After offering information, inquire if their issue has been resolved or if they need further assistance.',
             }
           ],
+          "temperature": 0.7
         }),
       );
       debugPrint(res.body);
