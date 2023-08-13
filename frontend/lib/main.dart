@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       // home: const OnBoarding(),
 
       // home: const Home(),
-      home: const ChatScreen(),
+      home: const Home(),
       // home: const Home(),
     );
   }

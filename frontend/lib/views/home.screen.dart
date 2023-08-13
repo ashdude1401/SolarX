@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/auth/auth0.dart';
 import 'package:frontend/views/connect_with_expert.dart';
 import 'package:frontend/views/market_place.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,12 +21,18 @@ class _HomeState extends State<Home> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text(
-          'Get Set Solar !',
-          style: GoogleFonts.quicksand(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: const Color(0xFF369708),
+        title: GestureDetector(
+          onTap: () async {
+            await Auth0Service().logoutAction();
+            print("logout");
+          },
+          child: Text(
+            'Get Set Solar !',
+            style: GoogleFonts.quicksand(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              color: const Color(0xFF369708),
+            ),
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -77,9 +84,14 @@ class _HomeState extends State<Home> {
                           const SizedBox(
                             height: 20,
                           ),
-                          Image.asset(
-                            "assets/images/notify.png",
-                            height: MediaQuery.of(context).size.height * 0.3,
+                          GestureDetector(
+                            onTap: () {
+                              Auth0Service().loginAction();
+                            },
+                            child: Image.asset(
+                              "assets/images/notify.png",
+                              height: MediaQuery.of(context).size.height * 0.3,
+                            ),
                           ),
                         ],
                       ),
