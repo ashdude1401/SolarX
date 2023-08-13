@@ -43,8 +43,8 @@ class MyApp extends StatelessWidget {
 
       // home: const Home(),
       // home: const ChatScreen(),
-      home: const Calculator(),
-      // home: const Home(),
+      // home: const Calculator(),
+      home: const Home(),
     );
   }
 }

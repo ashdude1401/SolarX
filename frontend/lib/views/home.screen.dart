@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/views/chat.screen.dart';
 import 'package:frontend/views/connect_with_expert.dart';
 import 'package:frontend/views/market_place.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -120,7 +121,7 @@ class _HomeState extends State<Home> {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ConnectWithExpert(),
+                    builder: (context) => const ChatScreen(),
                   ),
                 ),
                 child: FeatureCard(

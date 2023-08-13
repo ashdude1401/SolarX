@@ -329,60 +329,6 @@ class _FeatureCardState extends State<FeatureCard> {
             const SizedBox(
               height: 20,
             ),
-            FutureBuilder(
-              future: getResponse(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Column(
-                    children: [
-                      Text(
-                        "Energy Generated: ${snapshot.data!['energyGenerated']}",
-                        style: GoogleFonts.quicksand(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "Energy Consumed: ${snapshot.data!['energyConsumed']}",
-                        style: GoogleFonts.quicksand(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "Energy Saved: ${snapshot.data!['energySaved']}",
-                        style: GoogleFonts.quicksand(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "Bill Saved: ${snapshot.data!['billSaved']}",
-                        style: GoogleFonts.quicksand(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  );
-                } else {
-                  return const SizedBox();
-                }
-              },
-            ),
           ],
         ),
       ),
