@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'views/chat.screen.dart';
+import 'package:frontend/views/home.screen.dart';
+
 import 'constants/routes.dart';
 import 'constants/themedata.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
 
       home: const Home(),
       // home: const ChatScreen(),
+      // home: const Home(),
     );
   }
 }
