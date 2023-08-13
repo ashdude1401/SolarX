@@ -159,7 +159,7 @@ class _HomeState extends State<Home> {
 }
 
 class FeatureCard extends StatelessWidget {
-  FeatureCard({
+  const FeatureCard({
     super.key,
     required this.heading,
     required this.headingImg,
@@ -171,7 +171,7 @@ class FeatureCard extends StatelessWidget {
   final String heading;
   final String headingImg;
   final String content;
-  bool showChip;
+  final bool showChip;
   final Color color;
   @override
   Widget build(BuildContext context) {
