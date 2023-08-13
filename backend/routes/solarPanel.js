@@ -31,12 +31,6 @@ router.get("/:id", async (req, res) => {
   res.send(solarPanel);
 });
 
-router.get("/compare", (req, res) => {
-  const panel1 = req.query.panel1;
-  const panel2 = req.query.panel2;
-  var c1, c2;
-});
-
 router.post("/:id/image", async (req, res) => {
   const solarPanel = await SolarPanel.findById(req.params.id);
   solarPanel.image = req.body.image;
