@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:frontend/views/calculator.dart';
 import 'package:frontend/views/home.screen.dart';
 
 import 'constants/routes.dart';
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
       // home: const OnBoarding(),
 
       // home: const Home(),
-      home: const ChatScreen(),
+      // home: const ChatScreen(),
+      home: const Calculator(),
       // home: const Home(),
     );
   }
