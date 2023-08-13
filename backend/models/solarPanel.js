@@ -20,6 +20,9 @@ const solarPanelSchema = new Schema({
   price: {
     type: Number,
   },
+  efficiency: {
+    type: Number,
+  },
   dimensions: {
     type: String,
   },
