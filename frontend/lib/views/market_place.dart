@@ -95,7 +95,7 @@ class MarketPlace extends StatelessWidget {
             ),
 
             //List card of solar panels available in the market
-            Container(
+            SizedBox(
               height: 380,
               child: ListView.builder(
                 shrinkWrap: true,
