@@ -139,13 +139,13 @@ class _HomeState extends State<Home> {
 
               GestureDetector(
                 onTap: () => Navigator.pushNamed(context, Calculator.routeName),
-                child: FeatureCard(
+                child: const FeatureCard(
                     content:
                         "Let’s calculate conventional vs Solar Panel cost as per your consumption",
                     heading: 'Calculator',
                     headingImg: "assets/images/percent-square.png",
                     showChip: true,
-                    color: const Color(0xFF123507)),
+                    color: Color(0xFF123507)),
               ),
               const SizedBox(
                 height: 20,
@@ -159,7 +159,7 @@ class _HomeState extends State<Home> {
 }
 
 class FeatureCard extends StatelessWidget {
-  FeatureCard({
+  const FeatureCard({
     super.key,
     required this.heading,
     required this.headingImg,
@@ -171,7 +171,7 @@ class FeatureCard extends StatelessWidget {
   final String heading;
   final String headingImg;
   final String content;
-  bool showChip;
+  final bool showChip;
   final Color color;
   @override
   Widget build(BuildContext context) {
@@ -199,6 +199,7 @@ class FeatureCard extends StatelessWidget {
               const Spacer(),
               Image.asset(
                 headingImg,
+                color: Colors.white,
                 height: 25,
               ),
             ],
