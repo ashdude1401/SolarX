@@ -33,15 +33,15 @@ The SolarX App frontend is the user interface built using Flutter, enabling user
 
 # Frontend
 
-1. Clone this repository: `git clone https://github.com/your-username/solarx-flutter.git`
-2. Navigate to the project directory: `cd solarx-flutter`
+1. Clone this repository: `git clone https://github.com/ashdude1401/SolarX.git`
+2. Navigate to the project directory: `cd frontend`
 3. Install dependencies: `flutter pub get`
 
 # Backend
 
-1. Clone this repository: `git clone https://github.com/your-username/solarx-flutter.git`
-2. Navigate to the project directory: `cd solarx-flutter`
-3. Install dependencies: `flutter pub get`
+1. Clone this repository: `git clone https://github.com/ashdude1401/SolarX.git`
+2. Navigate to the project directory: `cd backend`
+3. Install dependencies: `npm install`
 
 ## Configuration
 
