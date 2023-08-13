@@ -82,7 +82,7 @@ function solarEnergy(area, state_no, Perfomance_ratio = 70, efficiency = 17) {
     efficiency *
     (data_irradiation[state_no] / 1000) *
     Perfomance_ratio *
-    365;
+    30;
     
   return energy;
 }
