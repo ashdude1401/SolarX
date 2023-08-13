@@ -4,6 +4,8 @@ import 'views/chat.screen.dart';
 import 'constants/routes.dart';
 import 'constants/themedata.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'views/home.screen.dart';
 // import 'views/onboarding.screen.dart';
 
 Future main() async {
@@ -36,8 +38,8 @@ class MyApp extends StatelessWidget {
 
       // home: const OnBoarding(),
 
-      // home: const Home(),
-      home: const ChatScreen(),
+      home: const Home(),
+      // home: const ChatScreen(),
     );
   }
 }
