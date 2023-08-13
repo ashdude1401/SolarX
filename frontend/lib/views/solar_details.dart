@@ -1,7 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/model/seller.model.dart';
+import 'package:shimmer/shimmer.dart';
 
 class SolarDetails extends StatelessWidget {
-  const SolarDetails({super.key});
+  final Seller? data;
+  const SolarDetails({
+    super.key,
+    this.data,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,26 +56,39 @@ class SolarDetails extends StatelessWidget {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(20),
-                        child: Image.network(
-                          "https://plus.unsplash.com/premium_photo-1668078530961-32f4a1107791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-                          fit: BoxFit.cover,
+                        child: AspectRatio(
+                          aspectRatio: 16 / 9,
+                          child: CachedNetworkImage(
+                            imageUrl: data!.image!,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => Shimmer.fromColors(
+                              baseColor: Colors.grey,
+                              highlightColor: Colors.white,
+                              child: Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.3,
+                                width: MediaQuery.of(context).size.width,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
-                      const ListTile(
+                      ListTile(
                         title: Text(
-                          "Solar Panel",
-                          style: TextStyle(
+                          data!.model!,
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
                             color: Color.fromARGB(255, 18, 81, 8),
                           ),
                         ),
                         subtitle: Text(
-                          "Brand Name",
-                          style: TextStyle(
+                          data!.brand!,
+                          style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 14,
                             color: Color.fromARGB(255, 18, 81, 8),
@@ -76,13 +96,13 @@ class SolarDetails extends StatelessWidget {
                         ),
                         trailing: Column(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.monetization_on_outlined,
                               color: Color.fromARGB(255, 18, 81, 8),
                             ),
                             Text(
-                              " 10000",
-                              style: TextStyle(
+                              data!.price.toString(),
+                              style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
                                 color: Color.fromARGB(255, 18, 81, 8),
@@ -109,24 +129,34 @@ class SolarDetails extends StatelessWidget {
                       ListTile(
                         leading: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
-                          child: Image.network(
-                            "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
+                          child: CachedNetworkImage(
+                            imageUrl:
+                                "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
                             fit: BoxFit.cover,
                             height: 50,
                             width: 50,
+                            placeholder: (context, url) => Shimmer.fromColors(
+                              baseColor: Colors.grey,
+                              highlightColor: Colors.white,
+                              child: Container(
+                                height: 50,
+                                width: 50,
+                                color: Colors.grey,
+                              ),
+                            ),
                           ),
                         ),
-                        title: const Text(
-                          "Sellor Name",
-                          style: TextStyle(
+                        title: Text(
+                          data!.seller!.firstName!,
+                          style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 18,
                             color: Color.fromARGB(255, 18, 81, 8),
                           ),
                         ),
-                        subtitle: const Text(
-                          "Renter",
-                          style: TextStyle(
+                        subtitle: Text(
+                          data!.seller!.email!,
+                          style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 14,
                             color: Colors.black87,
@@ -141,12 +171,12 @@ class SolarDetails extends StatelessWidget {
                           onPressed: () {},
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               'Description',
                               style: TextStyle(
                                 color: Color.fromARGB(255, 18, 81, 8),
@@ -154,20 +184,20 @@ class SolarDetails extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Row(
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 SizedBox(
                                   width: 300,
                                   child: Text(
-                                    "This is a solar panel description , it is very good",
+                                    data!.description!,
                                     softWrap: true,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.black87,
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
@@ -176,16 +206,16 @@ class SolarDetails extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
-                            Text("Specifications",
+                            const Text("Specifications",
                                 style: TextStyle(
                                   color: Color.fromARGB(255, 18, 81, 8),
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                 )),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Row(
@@ -193,10 +223,10 @@ class SolarDetails extends StatelessWidget {
                               children: [
                                 SpecsDisplay(
                                   spec: 'Efficiency',
-                                  value: '15%',
-                                  color: Color.fromRGBO(131, 206, 121, 1),
+                                  value: data!.efficiency!.toString(),
+                                  color: const Color.fromRGBO(131, 206, 121, 1),
                                 ),
-                                SpecsDisplay(
+                                const SpecsDisplay(
                                   spec: 'Power',
                                   value: "30W",
                                   color: Color.fromRGBO(131, 206, 121, 1),

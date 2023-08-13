@@ -25,7 +25,8 @@ class _MarketPlaceState extends State<MarketPlace> {
 
   Future<List<Seller>> getResponse() async {
     try {
-      var res = await http.get(Uri.parse('http://52.90.82.158:3000/seller'));
+      var res =
+          await http.get(Uri.parse('http://52.90.82.158:3000/solarPanel'));
       // print(res.body);
       var seller = sellerFromJson(res.body);
       return seller;
@@ -174,11 +175,15 @@ class _MarketPlaceState extends State<MarketPlace> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const SolarDetails(),
+                              builder: (context) => SolarDetails(
+                                data: snapshot.data![index],
+                              ),
                             ),
                           );
                         },
-                        child: const SolarProductCard(),
+                        child: SolarProductCard(
+                          data: snapshot.data![index],
+                        ),
                       );
                     },
                   ),
@@ -193,19 +198,26 @@ class _MarketPlaceState extends State<MarketPlace> {
 }
 
 class SolarProductCard extends StatelessWidget {
+  final Seller? data;
   const SolarProductCard({
     super.key,
+    this.data,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.5,
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 6, 46, 8),
-        borderRadius: BorderRadius.circular(20),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.5,
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 6, 46, 8),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: SolarProductHeader(
+          data: data,
+        ),
       ),
-      child: const SolarProductHeader(),
     );
   }
 }

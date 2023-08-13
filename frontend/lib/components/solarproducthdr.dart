@@ -1,9 +1,14 @@
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
+
+import '../model/seller.model.dart';
 
 class SolarProductHeader extends StatelessWidget {
+  final Seller? data;
   const SolarProductHeader({
     super.key,
+    this.data,
   });
 
   @override
@@ -15,23 +20,36 @@ class SolarProductHeader extends StatelessWidget {
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),
           ),
-          child: Image.network(
-            "https://plus.unsplash.com/premium_photo-1668078530961-32f4a1107791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-            fit: BoxFit.cover,
+          child: AspectRatio(
+            aspectRatio: 16 / 9,
+            child: CachedNetworkImage(
+              imageUrl: data!.image!,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => Shimmer.fromColors(
+                baseColor: Colors.grey,
+                highlightColor: Colors.white,
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  width: MediaQuery.of(context).size.width,
+                  color: Colors.grey,
+                ),
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+            ),
           ),
         ),
-        const ListTile(
+        ListTile(
           title: Text(
-            "Solar Panel",
-            style: TextStyle(
+            data!.model!,
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
               color: Color(0xFFFFFFFF),
             ),
           ),
           subtitle: Text(
-            "Brand Name",
-            style: TextStyle(
+            data!.brand!,
+            style: const TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 14,
               color: Color(0xFFFFFFFF),
@@ -39,13 +57,13 @@ class SolarProductHeader extends StatelessWidget {
           ),
           trailing: Column(
             children: [
-              Icon(
+              const Icon(
                 Icons.monetization_on_outlined,
                 color: Color(0xFFFFFFFF),
               ),
               Text(
-                " 10000",
-                style: TextStyle(
+                data!.price.toString(),
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                   color: Color(0xFFFFFFFF),
@@ -78,17 +96,17 @@ class SolarProductHeader extends StatelessWidget {
               width: 50,
             ),
           ),
-          title: const Text(
-            "Sellor Name",
-            style: TextStyle(
+          title: Text(
+            data!.seller!.firstName!,
+            style: const TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 18,
               color: Color(0xFFFFFFFF),
             ),
           ),
-          subtitle: const Text(
-            "Renter",
-            style: TextStyle(
+          subtitle: Text(
+            data!.seller!.companyName!,
+            style: const TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 14,
               color: Color(0xFFFFFFFF),
@@ -102,7 +120,7 @@ class SolarProductHeader extends StatelessWidget {
             ),
             onPressed: () {},
           ),
-        )
+        ),
       ],
     );
   }
