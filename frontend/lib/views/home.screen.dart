@@ -139,13 +139,13 @@ class _HomeState extends State<Home> {
 
               GestureDetector(
                 onTap: () => Navigator.pushNamed(context, Calculator.routeName),
-                child: FeatureCard(
+                child: const FeatureCard(
                     content:
                         "Let’s calculate conventional vs Solar Panel cost as per your consumption",
                     heading: 'Calculator',
                     headingImg: "assets/images/percent-square.png",
                     showChip: true,
-                    color: const Color(0xFF123507)),
+                    color: Color(0xFF123507)),
               ),
               const SizedBox(
                 height: 20,

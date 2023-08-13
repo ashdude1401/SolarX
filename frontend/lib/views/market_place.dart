@@ -9,24 +9,24 @@ class MarketPlace extends StatelessWidget {
   static const routeName = '/marketplace';
 
   final List<Widget> items = [
-    Padding(
-      padding: const EdgeInsets.all(8.0),
+    const Padding(
+      padding: EdgeInsets.all(8.0),
       child: FeatureCard(
         heading: "Best Deals",
         headingImg: "assets/images/Flame.png",
         content:
             "Get Best Deals on Solar Panels that are available in the market",
-        color: const Color.fromARGB(255, 20, 46, 41),
+        color: Color.fromARGB(255, 20, 46, 41),
       ),
     ),
-    Padding(
-      padding: const EdgeInsets.all(8.0),
+    const Padding(
+      padding: EdgeInsets.all(8.0),
       child: FeatureCard(
           heading: "Best Vendors",
           headingImg: "assets/images/Box.png",
           content:
               "Get your Solar pannel from the best vendors available in market",
-          color: const Color.fromARGB(255, 28, 72, 8)),
+          color: Color.fromARGB(255, 28, 72, 8)),
     ),
   ];
   @override
