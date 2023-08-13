@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/auth/auth0.dart';
-import 'package:frontend/views/connect_with_expert.dart';
+
 import 'package:frontend/views/market_place.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'calculator.dart';
+import 'chat.screen.dart';
 
 final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -132,7 +133,7 @@ class _HomeState extends State<Home> {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ConnectWithExpert(),
+                    builder: (context) => const ChatScreen(),
                   ),
                 ),
                 child: FeatureCard(
