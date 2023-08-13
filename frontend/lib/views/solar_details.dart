@@ -37,10 +37,10 @@ class SolarDetails extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Container(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: Color.fromARGB(255, 205, 221, 203),
+                color: const Color.fromARGB(255, 205, 221, 203),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

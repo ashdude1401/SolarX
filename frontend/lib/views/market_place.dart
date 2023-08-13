@@ -4,22 +4,46 @@ import 'package:frontend/views/home.screen.dart';
 import 'package:frontend/views/solar_details.dart';
 
 import '../components/solarproducthdr.dart';
+import 'package:http/http.dart' as http;
+import '../model/seller.model.dart';
 
-class MarketPlace extends StatelessWidget {
+class MarketPlace extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   MarketPlace({super.key});
 
   static const routeName = '/marketplace';
 
+  @override
+  State<MarketPlace> createState() => _MarketPlaceState();
+}
+
+class _MarketPlaceState extends State<MarketPlace> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Future<List<Seller>> getResponse() async {
+    try {
+      var res = await http.get(Uri.parse('http://52.90.82.158:3000/seller'));
+      // print(res.body);
+      var seller = sellerFromJson(res.body);
+      return seller;
+    } catch (e) {
+      print("Error during HTTP request: $e");
+      return [];
+    }
+  }
+
   final List<Widget> items = [
-    Padding(
-      padding: const EdgeInsets.all(8.0),
+    const Padding(
+      padding: EdgeInsets.all(8.0),
       child: FeatureCard(
         heading: "Best Deals",
         headingImg: "assets/images/Flame.png",
         content:
             "Get Best Deals on Solar Panels that are available in the market",
         color: Color.fromARGB(255, 23, 139, 43),
-  
       ),
     ),
     const Padding(
@@ -31,17 +55,17 @@ class MarketPlace extends StatelessWidget {
               "Get your Solar pannel from the best vendors available in market",
           color: Color.fromARGB(255, 10, 64, 131)),
     ),
-    Padding(
-      padding: const EdgeInsets.all(8.0),
+    const Padding(
+      padding: EdgeInsets.all(8.0),
       child: FeatureCard(
         heading: "Custom filters",
         headingImg: "assets/images/Flame.png",
         content: "Sort the Solar Panels as per your needs",
         color: Color.fromARGB(255, 13, 107, 73),
       ),
-         
     ),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,49 +133,58 @@ class MarketPlace extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SolarDetails(),
-                    ),
-                  );
-                },
-                child: const SolarProductCard())
-
-            // //List card of solar panels available in the market
-            // Container(
-            //   height: 380,
-            //   child: ListView.builder(
-            //     shrinkWrap: true,
-            //     itemCount: 5,
-            //     itemBuilder: (BuildContext context, int index) {
-            //       return Card(
-            //         child: GestureDetector(
-            //           onTap: () {
-            //             Navigator.push(
-            //               context,
-            //               MaterialPageRoute(
-            //                 builder: (context) => const SolarDetails(),
-            //               ),
-            //             );
-            //           },
-            //           child: ListTile(
-            //             leading: ClipRRect(
-            //               borderRadius: BorderRadius.circular(8.0),
-            //               child: Image.network(
-            //                   "https://plus.unsplash.com/premium_photo-1668078530961-32f4a1107791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"),
-            //             ),
-            //             title: const Text("Solar Panel"),
-            //             subtitle: const Text("Rs. 1000"),
-            //             trailing: const Icon(Icons.arrow_forward_ios),
-            //           ),
+            // GestureDetector(
+            //     onTap: () {
+            //       Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) => const SolarDetails(),
             //         ),
             //       );
             //     },
-            //   ),
-            // )
+            //     child: const SolarProductCard())
+
+            FutureBuilder<List<Seller>>(
+              future:
+                  getResponse(), // Provide the future function that fetches the data
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    child: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                }
+                if (snapshot.hasError) {
+                  return const SizedBox(
+                    height: 100,
+                    child: Center(
+                      child: Text('Error loading data.'),
+                    ),
+                  );
+                }
+                // If the data is successfully loaded, display the ListView.builder
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SolarDetails(),
+                            ),
+                          );
+                        },
+                        child: const SolarProductCard(),
+                      );
+                    },
+                  ),
+                );
+              },
+            )
           ],
         ),
       ),
@@ -169,7 +202,7 @@ class SolarProductCard extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height * 0.5,
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 6, 46, 8),
+        color: const Color.fromARGB(255, 6, 46, 8),
         borderRadius: BorderRadius.circular(20),
       ),
       child: const SolarProductHeader(),
