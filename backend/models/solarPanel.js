@@ -23,7 +23,7 @@ const solarPanelSchema = new Schema({
   dimensions: {
     type: String,
   },
-  image: [{ type: String }],
+  image: { type: String },
   availability: {
     type: String,
     enum: ["available", "sold"],

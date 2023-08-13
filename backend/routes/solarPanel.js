@@ -20,9 +20,16 @@ router.get("/sort/price", async (req, res) => {
     .sort({ price: order });
   res.send(solarPanel);
 });
+router.get("/:id", async (req, res) => {
+  const solarPanel = await SolarPanel.findById(req.params.id).populate(
+    "seller"
+  );
+  res.send(solarPanel);
+});
+
 router.post("/:id/image", async (req, res) => {
   const solarPanel = await SolarPanel.findById(req.params.id);
-  solarPanel.image.append(req.body.image);
+  solarPanel.image = req.body.image;
   await solarPanel.save();
   res.send("Image uploaded successfully");
 });
