@@ -4,7 +4,12 @@ const { isLoggedIn } = require("../middlewares");
 const solarEnergy = require("../functions/solar");
 const router = express.Router();
 
-router.get("/:id", async (req, res) => {
+router.get("/", async (req, res) => {
+  const user = await User.findOne({});
+  res.send(user);
+});
+
+router.get("/:id", isLoggedIn, async (req, res) => {
   const userId = req.params.id;
   const user = await User.findOne({ userId });
   console.log(user);
@@ -12,6 +17,7 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/signup", async (req, res) => {
+  console.log(req.body);
   const {
     userId,
     email,
@@ -23,13 +29,17 @@ router.post("/signup", async (req, res) => {
     city,
     zipCode,
     country,
-    phoneNumber,
+    countryCode,
+    number,
     location,
   } = req.body;
   const user = await User.findOne({ userId });
+  console.log(user);
   if (user) {
+    console.log("user already exists");
     return res.status(400).send("User already exists");
   }
+  console.log("user does not exist");
   const newUser = new User({
     userId,
     email,
@@ -41,17 +51,15 @@ router.post("/signup", async (req, res) => {
     city,
     zipCode,
     country,
-    phoneNumber,
+    phoneNumber: { countryCode, number },
     location,
   });
-  await newUser
-    .save()
-    .then((user) => {
-      res.send("SignUp successfull");
-    })
-    .catch((err) => {
-      res.status(400).send(err);
-    });
+  await newUser.save().then((user) => {
+    res.send("SignUp successfull");
+  });
+  // .catch((err) => {
+  //   res.status(400).send(err);
+  // });
 });
 
 router.post("/calc", async (req, res) => {

@@ -10,12 +10,17 @@ const sellerSchema = new Schema({
   username: {
     type: String,
     unique: true,
+    sparse: true,
   },
   email: {
     type: String,
     unique: true,
+    sparse: true,
   },
   companyName: {
+    type: String,
+  },
+  companyImage: {
     type: String,
   },
   firstName: {
