@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:frontend/views/home.screen.dart';
 import 'package:frontend/views/solar_details.dart';
 
+import '../components/solarproducthdr.dart';
+
 class MarketPlace extends StatelessWidget {
   MarketPlace({super.key});
 
@@ -16,7 +18,7 @@ class MarketPlace extends StatelessWidget {
         headingImg: "assets/images/Flame.png",
         content:
             "Get Best Deals on Solar Panels that are available in the market",
-        color: const Color.fromARGB(255, 20, 46, 41),
+        color: Color.fromARGB(255, 23, 139, 43),
       ),
     ),
     Padding(
@@ -26,7 +28,16 @@ class MarketPlace extends StatelessWidget {
           headingImg: "assets/images/Box.png",
           content:
               "Get your Solar pannel from the best vendors available in market",
-          color: const Color.fromARGB(255, 28, 72, 8)),
+          color: Color.fromARGB(255, 10, 64, 131)),
+    ),
+    Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: FeatureCard(
+        heading: "Custom filters",
+        headingImg: "assets/images/Flame.png",
+        content: "Sort the Solar Panels as per your needs",
+        color: Color.fromARGB(255, 13, 107, 73),
+      ),
     ),
   ];
   @override
@@ -90,42 +101,76 @@ class MarketPlace extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
-                color: Color(0xFF369708),
+                color: Color.fromARGB(255, 6, 111, 29),
               ),
             ),
-
-            //List card of solar panels available in the market
-            Container(
-              height: 380,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 5,
-                itemBuilder: (BuildContext context, int index) {
-                  return Card(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SolarDetails(),
-                          ),
-                        );
-                      },
-                      child: ListTile(
-                        leading: Image.network(
-                            "https://plus.unsplash.com/premium_photo-1668078530961-32f4a1107791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"),
-                        title: const Text("Solar Panel"),
-                        subtitle: const Text("Rs. 1000"),
-                        trailing: const Icon(Icons.arrow_forward_ios),
-                      ),
+            const SizedBox(
+              height: 10,
+            ),
+            GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SolarDetails(),
                     ),
                   );
                 },
-              ),
-            )
+                child: const SolarProductCard())
+
+            // //List card of solar panels available in the market
+            // Container(
+            //   height: 380,
+            //   child: ListView.builder(
+            //     shrinkWrap: true,
+            //     itemCount: 5,
+            //     itemBuilder: (BuildContext context, int index) {
+            //       return Card(
+            //         child: GestureDetector(
+            //           onTap: () {
+            //             Navigator.push(
+            //               context,
+            //               MaterialPageRoute(
+            //                 builder: (context) => const SolarDetails(),
+            //               ),
+            //             );
+            //           },
+            //           child: ListTile(
+            //             leading: ClipRRect(
+            //               borderRadius: BorderRadius.circular(8.0),
+            //               child: Image.network(
+            //                   "https://plus.unsplash.com/premium_photo-1668078530961-32f4a1107791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"),
+            //             ),
+            //             title: const Text("Solar Panel"),
+            //             subtitle: const Text("Rs. 1000"),
+            //             trailing: const Icon(Icons.arrow_forward_ios),
+            //           ),
+            //         ),
+            //       );
+            //     },
+            //   ),
+            // )
           ],
         ),
       ),
+    );
+  }
+}
+
+class SolarProductCard extends StatelessWidget {
+  const SolarProductCard({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.5,
+      decoration: BoxDecoration(
+        color: Color.fromARGB(255, 6, 46, 8),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: const SolarProductHeader(),
     );
   }
 }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:frontend/chat/views/chat.screen.dart';
 import 'package:frontend/views/home.screen.dart';
-import 'package:frontend/views/onboarding.screen.dart';
 
 import 'constants/routes.dart';
 import 'constants/themedata.dart';
@@ -39,7 +37,7 @@ class MyApp extends StatelessWidget {
       // home: const OnBoarding(),
 
       // home: const Home(),
-      home: const ChatScreen(),
+      home: const Home(),
     );
   }
 }

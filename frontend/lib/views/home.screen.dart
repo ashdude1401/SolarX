@@ -199,6 +199,7 @@ class FeatureCard extends StatelessWidget {
               const Spacer(),
               Image.asset(
                 headingImg,
+                color: Colors.white,
                 height: 25,
               ),
             ],
