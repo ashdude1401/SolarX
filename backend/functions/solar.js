@@ -76,14 +76,19 @@ data_irradiation = {
   36: 1266.52,
 };
 
-function solarEnergy(area, state_no, Perfomance_ratio = 70, efficiency = 17) {
+function solarEnergy(area,unit,price,monthlyCost, state_no, Perfomance_ratio = 70, efficiency = 17) {
   energy =
     area *
     efficiency *
     (data_irradiation[state_no] / 1000) *
     Perfomance_ratio *
-    30;
-    
-  return energy;
+    30*0.1;
+  let consumption=monthlyCost/unit;
+  let amountGained=25*12*monthlyCost-price;
+  let treeSaved=energy/763; 
+  let recoveryMonth=price/monthlyCost;
+  let co2EmissionMitigated=energy/1220;
+
+  return {"energy":energy,"amountGained":amountGained,"treeSaved":Math.floor(treeSaved),"co2EmissionMitigated(in tonnes)":Math.floor(co2EmissionMitigated),"recoverMonth":Math.floor(recoveryMonth)};
 }
 module.exports = solarEnergy;

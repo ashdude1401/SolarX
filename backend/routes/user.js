@@ -63,8 +63,8 @@ router.post("/signup", async (req, res) => {
 });
 
 router.post("/calc", async (req, res) => {
-  const { area, stateNo, perfomanceRatio, efficiency } = req.body;
-  energy = solarEnergy(area, stateNo, perfomanceRatio, efficiency);
+  const { area, stateNo,monthlyCost, performanceRatio, efficiency ,unit,price} = req.body;
+  energy = solarEnergy(area,unit,price,monthlyCost, stateNo, performanceRatio, efficiency);
   res.send({ energy });
 });
 
