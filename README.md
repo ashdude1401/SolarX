@@ -57,11 +57,6 @@ Explore the following key screens and widgets:
 - **EnergyCalculatorWidget**: Calculate energy production based on solar panel specifications.
 - **UserDashboardScreen**: User-specific information and settings.
 
-## State Management
-
-State is managed using Provider, a state management solution that simplifies managing and sharing state between widgets.
-
 ## Contributing
 
 Contributions are welcome! Feel free to submit issues or pull requests.
-
