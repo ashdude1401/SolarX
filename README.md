@@ -65,12 +65,3 @@ State is managed using Provider, a state management solution that simplifies man
 
 Contributions are welcome! Feel free to submit issues or pull requests.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-Thank you for using the SolarX App frontend built with Flutter. For more details, refer to the codebase and Flutter widgets.
-
-[Visit SolarX App](https://www.solarxapp.com)
